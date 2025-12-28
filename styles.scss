@@ -1,0 +1,110 @@
+// style.scss
+
+// 1. 定義日式文青風變數
+$font-family-serif: "Noto Serif TC", "Songti TC", serif; // 建議引入 Google Fonts 的 Noto Serif
+$font-family-base: "Noto Sans TC", system-ui, -apple-system, sans-serif;
+
+// 配色盤 (文青色票)
+$body-bg: #f9f7f2;       // 米白色 (和紙感)
+$body-color: #595856;    // 深灰褐色 (取代純黑)
+$primary: #7a8c78;       // 抹茶綠 (低飽和)
+$secondary: #b5aea3;     // 亞麻灰
+$light: #ffffff;
+$dark: #000000;
+
+$border-radius: 2px;     // 減少圓角，增加俐落感
+$enable-shadows: false;  // 日式風格通常較扁平，去陰影
+
+// 2. 引入 Bootstrap (在這之前定義變數才會生效)
+@import "bootstrap/scss/bootstrap";
+
+// 3. 客製化樣式調整
+
+// 全域設定
+body {
+  letter-spacing: 0.08em; // 增加字距，營造呼吸感
+  line-height: 1.8;
+}
+
+h1, h2, h3, h4, h6 {
+  font-family: $font-family-serif;
+  font-weight: 500;
+  color: $dark;
+}
+
+h5 {
+  font-family: $font-family-serif;
+  font-weight: 500;
+  color: $light;
+}
+
+
+// 導覽列客製
+.navbar {
+  background-color: rgba($body-bg, 0.95);
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba($secondary, 0.2);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+
+  .nav-link {
+    color: $body-color;
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+// 輪播圖文字
+.carousel-caption {
+  bottom: 20%;
+  h5 {
+    font-size: 2.5rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  }
+  p {
+    font-size: 1.1rem;
+    font-weight: 300;
+  }
+}
+
+// 卡片去邊框，更簡約
+.card {
+  border: none;
+  background-color: transparent;
+  
+  img {
+    filter: brightness(0.9) contrast(0.95); // 讓圖片稍微柔和一點
+    transition: all 0.5s ease;
+  }
+
+  &:hover img {
+    filter: brightness(1);
+    transform: scale(1.02);
+  }
+}
+
+// 旅遊計畫 (時間軸感)
+.plan-item {
+  border-left: 2px solid $primary;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: $body-bg;
+    border: 2px solid $primary;
+    border-radius: 50%;
+    position: absolute;
+    left: -6px;
+    top: 5px;
+  }
+}
+
+// 區塊通用間距
+section {
+  padding: 5rem 0;
+}
